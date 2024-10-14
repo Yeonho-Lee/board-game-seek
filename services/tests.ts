@@ -15,7 +15,7 @@ export async function getPostsData(): Promise<Posts[]> {
     try {
         const { rows }: { rows: Posts[] } = await sql`SELECT id, title, content, author FROM tests;`;
         return rows;
-    } catch (error) {
+    } catch {
         throw new Error("Failed to fetch posts data");
     }
 }

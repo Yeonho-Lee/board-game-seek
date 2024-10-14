@@ -22,7 +22,7 @@ export default function Page() {
         try {
             const postsData = await getPostsData();
             getPosts(postsData);
-        } catch (error) {
+        } catch {
             throw new Error("Failed to fetch posts data");
         }
     };
