@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { loadEnvFile } from 'node:process';
-import { Pool } from 'pg';
+import pg from 'pg';
 import { object, parse, string } from 'valibot';
 import * as schema from './schema.ts';
 
@@ -15,7 +15,7 @@ const dbCredentials = parse(
 	process.env,
 );
 
-const pool = new Pool({
+const pool = new pg.Pool({
 	connectionString: `postgres://${dbCredentials.DB_USERNAME}:${dbCredentials.DB_PASSWORD}@localhost:5432/${dbCredentials.DB_NAME}`,
 });
 
