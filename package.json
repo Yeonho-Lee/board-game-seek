@@ -7,8 +7,10 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"db:index": "node --experimental-strip-types drizzle/index.ts",
 		"db:generate": "drizzle-kit generate",
-		"db:migrate": "drizzle-kit migrate"
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio"
 	},
 	"dependencies": {
 		"@next/env": "^14.2.15",
