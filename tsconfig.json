@@ -12,7 +12,6 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
-
         "plugins": [
             {
                 "name": "next"
@@ -21,8 +20,17 @@
         "paths": {
             "@/*": ["./*"]
         },
-        "allowImportingTsExtensions": true
+        "allowImportingTsExtensions": true,
+        "target": "ES2017"
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "drizzle/.client.ts",
+        "drizzle/.index.ts",
+        "drizzle/.schema.ts"
+    ],
     "exclude": ["node_modules"]
 }
