@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "originalId": 342942,
   "name": "Ark Nova",
   "rank": 4,
@@ -15,4 +16,11 @@
   "maxPlayingTime": 150,
   "weight": 3.77,
   "description": "In Ark Nova, you will plan and design a modern, scientifically managed zoo. With the ultimate goal of owning the most successful zoological establishment, you will build enclosures, accommodate animals, and support conservation projects all over the world. Specialists and unique buildings will help you in achieving this goal.&#10;&#10;Each player has a set of five action cards to manage their gameplay, and the power of an action is determined by the slot the card currently occupies. The cards in question are:&#10;&#10;&#10;    CARDS: Allows you to gain new zoo cards (animals, sponsors, and conservation project cards).&#10;    BUILD: Allows you to build standard or special enclosures, kiosks, and pavilions.&#10;    ANIMALS: Allows you to accommodate animals in your zoo.&#10;    ASSOCIATION: Allows your association workers to carry out different tasks.&#10;    SPONSORS: Allows you to play a sponsor card in your zoo or to raise money.&#10;&#10;&#10;255 cards featuring animals, specialists, special enclosures, and conservation projects, each with a special ability, are at the heart of Ark Nova. Use them to increase the appeal and scientific reputation of your zoo and collect conservation points.&#10;&#10;&mdash;description from the publisher&#10;&#10;"
+=======
+  "id": 342942,
+  "name": "Ark Nova",
+  "yearPublished": 2021,
+  "minPlayers": 1,
+  "maxPlayers": 4
+>>>>>>> 1999866f50099f123e4a21c09ff9f06c1eae8069
 }

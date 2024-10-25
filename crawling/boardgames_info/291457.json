@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "originalId": 291457,
   "name": "Gloomhaven: Jaws of the Lion",
   "rank": 10,
@@ -15,4 +16,11 @@
   "maxPlayingTime": 120,
   "weight": 3.6424,
   "description": "Gloomhaven: Jaws of the Lion is a standalone game that takes place before the events of Gloomhaven. The game includes four new characters &mdash; Valrath Red Guard (tank, crowd control), Inox Hatchet (ranged damage), Human Voidwarden (support, mind-control), and Quatryl Demolitionist (melee damage, obstacle manipulation) &mdash; that can also be used in the original Gloomhaven game.&#10;&#10;The game also includes 16 monster types (including seven new standard monsters and three new bosses) and a new campaign with 25 scenarios that invites the heroes to investigate a case of mysterious disappearances within the city. Is it the work of Vermlings, or is something far more sinister going on?&#10;&#10;Gloomhaven: Jaws of the Lion is aimed at a more casual audience to get people into the gameplay more quickly. All of the hard-to-organize cardboard map tiles have been removed, and instead players will play on the scenario book itself, which features new artwork unique to each scenario. The last barrier to entry &mdash; i.e., learning the game &mdash; has also been lowered through a simplified rule set and a five-scenario tutorial that will ease new players into the experience.&#10;&#10;"
+=======
+  "id": 291457,
+  "name": "Gloomhaven: Jaws of the Lion",
+  "yearPublished": 2020,
+  "minPlayers": 1,
+  "maxPlayers": 4
+>>>>>>> 1999866f50099f123e4a21c09ff9f06c1eae8069
 }
