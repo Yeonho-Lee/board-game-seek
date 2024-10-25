@@ -4,7 +4,7 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -134.3332,
+    "scrollTop": -0.9998,
     "scrollLeft": 0,
     "zoomLevel": 1,
     "show": 431,
@@ -51,6 +51,7 @@
         "columnIds": [
           "2EwV7ScaNgh1HS_D8__Vd",
           "VBO2V5jNECn-Lxl39085W",
+          "tq9WDkxEskXBR3foMKQBC",
           "1n6hnMY0xh30_jX45rbbN",
           "Pw3iD8pnTaZj8roPX49W0",
           "9aVU6fd1nDDtQP8bAbepb",
@@ -69,6 +70,7 @@
           "2EwV7ScaNgh1HS_D8__Vd",
           "pScSZZ0LlI0FqxhPiZVWu",
           "VBO2V5jNECn-Lxl39085W",
+          "tq9WDkxEskXBR3foMKQBC",
           "1n6hnMY0xh30_jX45rbbN",
           "r1D1Ph0hV_hC4ZTcFbGp4",
           "Pw3iD8pnTaZj8roPX49W0",
@@ -85,15 +87,15 @@
           "6l4zbNUknSNAEfbpp7gU_"
         ],
         "ui": {
-          "x": 53.756,
-          "y": 76.439,
+          "x": 58.756,
+          "y": 40.439,
           "zIndex": 2,
           "widthName": 73,
           "widthComment": 60,
           "color": ""
         },
         "meta": {
-          "updateAt": 1729875159755,
+          "updateAt": 1729878846165,
           "createAt": 1729864477152
         }
       },
@@ -632,6 +634,26 @@
           "updateAt": 1729865654782,
           "createAt": 1729865643755
         }
+      },
+      "tq9WDkxEskXBR3foMKQBC": {
+        "id": "tq9WDkxEskXBR3foMKQBC",
+        "tableId": "EJBuwz3WVrhXFpqsHuIzs",
+        "name": "name",
+        "comment": "",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1729878839848,
+          "createAt": 1729878831256
+        }
       }
     },
     "relationshipEntities": {
@@ -645,8 +667,8 @@
           "columnIds": [
             "2EwV7ScaNgh1HS_D8__Vd"
           ],
-          "x": 540.756,
-          "y": 284.43899999999996,
+          "x": 545.756,
+          "y": 260.439,
           "direction": 2
         },
         "end": {
@@ -974,6 +996,16 @@
       {
         "name": 1729865650764,
         "dataType": 1729865654782
+      }
+    ],
+    "tq9WDkxEskXBR3foMKQBC": [
+      "tableColumnEntities",
+      1729878831254,
+      -1,
+      {
+        "name": 1729878837304,
+        "dataType": 1729878838675,
+        "options(notNull)": 1729878839847
       }
     ]
   }
