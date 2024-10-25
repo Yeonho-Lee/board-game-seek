@@ -1,6 +1,6 @@
 // /* page.tsx */
 
-// "use client";
+"use client";
 // import { Posts, getPostsData } from "@/services/tests";
 // import { useEffect, useState } from "react";
 
