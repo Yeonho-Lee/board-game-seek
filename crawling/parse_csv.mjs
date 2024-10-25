@@ -27,23 +27,47 @@ async function callAPI(ids) {
     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
     for (const id of ids) {
         try {
-            const response = await axios.get(`https://boardgamegeek.com/xmlapi2/thing?id=${id}`);
+            const response = await axios.get(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
             const xmlData = response.data;
 
             // XML 데이터를 JSON으로 변환
             const jsonData = parser.parse(xmlData);
 
+            const item = jsonData.items.item;
+
+            const { bestWith, recommendedWith } = getPollSummary(item);
+            const { minPlayers: minBestPlayer, maxPlayers: maxBestPlayer } = parsePlayerRange(bestWith);
+            const { minPlayers: minRecommendedPlayer, maxPlayers: maxRecommendedPlayer } =
+                parsePlayerRange(recommendedWith);
+            const name = Array.isArray(item.name)
+                ? item.name.find((n) => n.type === "primary")?.value
+                : item.name?.value;
+            const rank = Array.isArray(item.statistics.ratings.ranks.rank)
+                ? item.statistics.ratings.ranks.rank.find((n) => n.type === "subtype")?.value
+                : item.name?.value;
+
             // 필요한 데이터만 추출
-            const filteredData = {
-                id: Number(jsonData.items.item.id),
-                name: jsonData.items.item.name[0]?.value, // 이름
-                yearPublished: Number(jsonData.items.item.yearpublished.value), // 발행 연도
-                minPlayers: Number(jsonData.items.item.minplayers.value), // 최소 플레이어 수
-                maxPlayers: Number(jsonData.items.item.maxplayers.value), // 최대 플레이어 수
+            const boardGameInfo = {
+                originalId: Number(item.id), // Convert id to a number if applicable
+                name: name,
+                rank: Number(rank), // Convert rank to a number
+                publishedYear: Number(item.yearpublished?.value), // Convert published year
+                rating: Number(item.statistics.ratings.average?.value), // Convert rating to a number
+                minPlayer: Number(item.minplayers?.value), // Convert min players to a number
+                maxPlayer: Number(item.maxplayers?.value), // Convert max players to a number
+                minRecommendedPlayers: Number(minRecommendedPlayer) || null, // Convert min recommended players
+                maxRecommendedPlayers: Number(maxRecommendedPlayer) || null, // Convert max recommended players
+                minBestPlayers: Number(minBestPlayer) || null, // Convert min best players
+                maxBestPlayers: Number(maxBestPlayer) || null, // Convert max best players
+                age: Number(item.minage?.value), // Convert age to a number
+                minPlayingTime: Number(item.minplaytime?.value), // Convert min playing time
+                maxPlayingTime: Number(item.maxplaytime?.value), // Convert max playing time
+                weight: Number(item.statistics.ratings.averageweight?.value), // Convert weight to a number
+                description: item.description,
             };
 
             // 필요한 데이터만 파일로 저장
-            fs.writeFileSync(`./crawling/boardgames_info/${id}.json`, JSON.stringify(filteredData, null, 2), "utf-8");
+            fs.writeFileSync(`./crawling/boardgames_info/${id}.json`, JSON.stringify(boardGameInfo, null, 2), "utf-8");
             console.log(`API 호출 및 데이터 저장 성공 (id: ${id})`);
         } catch (error) {
             // 에러 구분
@@ -64,52 +88,35 @@ async function callAPI(ids) {
     }
 }
 
-// XML parsing 함수들
+function getPollSummary(item) {
+    const pollSummary = item["poll-summary"];
 
-async function parsePlayerPreferences() {
-    // XML 파일 경로 설정
-    const xmlFilePath = join(process.cwd(), "yourfile.xml");
-    const xmlData = fs.readFileSync(xmlFilePath, "utf-8");
+    const bestWith = pollSummary?.result.find((res) => res.name === "bestwith")?.value;
+    const recommendedWith = pollSummary?.result.find((res) => res.name === "recommmendedwith")?.value;
 
-    // XML 파싱 설정
-    const parser = new XMLParser({
-        ignoreAttributes: false,
-        attributeNamePrefix: "",
-    });
-
-    // XML 데이터 파싱
-    const jsonObj = parser.parse(xmlData);
-
-    const results = jsonObj.poll.results;
-
-    // 초기 변수 설정
-    let bestMinPlayer = Infinity;
-    let bestMaxPlayer = -Infinity;
-    let recMinPlayer = Infinity;
-    let recMaxPlayer = -Infinity;
-
-    // 각 인원별로 `Best` 및 `Recommended`의 최소/최대 플레이어 계산
-    for (const result of results) {
-        const numPlayers = result.numplayers;
-
-        for (const entry of result.result) {
-            const { value, numvotes } = entry;
-            if (value === "Best" && numvotes > 0) {
-                bestMinPlayer = Math.min(bestMinPlayer, parseInt(numPlayers));
-                bestMaxPlayer = Math.max(bestMaxPlayer, parseInt(numPlayers));
-            }
-            if (value === "Recommended" && numvotes > 0) {
-                recMinPlayer = Math.min(recMinPlayer, parseInt(numPlayers));
-                recMaxPlayer = Math.max(recMaxPlayer, parseInt(numPlayers));
-            }
-        }
-    }
-
-    // 결과 출력
-    console.log(`Best: Min Players = ${bestMinPlayer}, Max Players = ${bestMaxPlayer}`);
-    console.log(`Recommended: Min Players = ${recMinPlayer}, Max Players = ${recMaxPlayer}`);
+    return {
+        bestWith,
+        recommendedWith,
+    };
 }
 
+function parsePlayerRange(playerString) {
+    if (!playerString) {
+        console.log("playerString is null or undefined.");
+        return { minPlayers: null, maxPlayers: null };
+    }
+
+    const match = playerString.match(/(\d+)[^\d]*(\d+)?/); // 숫자 추출
+
+    if (match) {
+        const minPlayers = parseInt(match[1], 10); // 첫 번째 숫자 (min)
+        const maxPlayers = match[2] ? parseInt(match[2], 10) : minPlayers; // 두 번째 숫자가 있으면 max, 없으면 min과 동일
+        return { minPlayers, maxPlayers };
+    }
+
+    console.log("No match found in playerString.");
+    return { minPlayers: null, maxPlayers: null }; // 일치하는 숫자가 없으면 null 반환
+}
 // 메인 함수
 async function main() {
     const csvFilePath = join(process.cwd(), "/crawling/boardgames_ranks.csv");
