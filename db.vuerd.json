@@ -4,7 +4,7 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -1,
+    "scrollTop": -134.3332,
     "scrollLeft": 0,
     "zoomLevel": 1,
     "show": 431,
@@ -85,15 +85,15 @@
           "6l4zbNUknSNAEfbpp7gU_"
         ],
         "ui": {
-          "x": 74.756,
-          "y": 70.439,
+          "x": 53.756,
+          "y": 76.439,
           "zIndex": 2,
           "widthName": 73,
           "widthComment": 60,
           "color": ""
         },
         "meta": {
-          "updateAt": 1729865698503,
+          "updateAt": 1729875159755,
           "createAt": 1729864477152
         }
       },
@@ -236,7 +236,7 @@
       "9aVU6fd1nDDtQP8bAbepb": {
         "id": "9aVU6fd1nDDtQP8bAbepb",
         "tableId": "EJBuwz3WVrhXFpqsHuIzs",
-        "name": "minPlayer",
+        "name": "minPlayers",
         "comment": "",
         "dataType": "INTEGER",
         "default": "",
@@ -249,7 +249,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1729864610933,
+          "updateAt": 1729875166266,
           "createAt": 1729864483638
         }
       },
@@ -276,100 +276,100 @@
       "NJmzw7Z3YM_-PFljWNtqJ": {
         "id": "NJmzw7Z3YM_-PFljWNtqJ",
         "tableId": "EJBuwz3WVrhXFpqsHuIzs",
-        "name": "maxPlayer",
+        "name": "maxPlayers",
         "comment": "",
         "dataType": "INTEGER",
         "default": "",
         "options": 8,
         "ui": {
           "keys": 0,
-          "widthName": 60,
+          "widthName": 61,
           "widthComment": 60,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1729864624762,
+          "updateAt": 1729875167146,
           "createAt": 1729864605757
         }
       },
       "fu1C9oyxO5hyZZORHnT06": {
         "id": "fu1C9oyxO5hyZZORHnT06",
         "tableId": "EJBuwz3WVrhXFpqsHuIzs",
-        "name": "minRecommendePlayer",
+        "name": "minRecommendePlayers",
         "comment": "",
         "dataType": "INTEGER",
         "default": "",
         "options": 0,
         "ui": {
           "keys": 0,
-          "widthName": 127,
+          "widthName": 132,
           "widthComment": 60,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1729864634774,
+          "updateAt": 1729875170295,
           "createAt": 1729864616670
         }
       },
       "66gZNs7TQFoTuiv90QfF4": {
         "id": "66gZNs7TQFoTuiv90QfF4",
         "tableId": "EJBuwz3WVrhXFpqsHuIzs",
-        "name": "maxRecommendePlayer",
+        "name": "maxRecommendePlayers",
         "comment": "",
         "dataType": "INTEGER",
         "default": "",
         "options": 0,
         "ui": {
           "keys": 0,
-          "widthName": 129,
+          "widthName": 134,
           "widthComment": 60,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1729864677743,
+          "updateAt": 1729875171778,
           "createAt": 1729864616805
         }
       },
       "Iv4c2AaXngKGoTBRKqzKh": {
         "id": "Iv4c2AaXngKGoTBRKqzKh",
         "tableId": "EJBuwz3WVrhXFpqsHuIzs",
-        "name": "minBestPlayer",
+        "name": "minBestPlayers",
         "comment": "",
         "dataType": "INTEGER",
         "default": "",
         "options": 0,
         "ui": {
           "keys": 0,
-          "widthName": 76,
+          "widthName": 81,
           "widthComment": 60,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1729864676195,
+          "updateAt": 1729875172966,
           "createAt": 1729864616942
         }
       },
       "K5qVextvY_YqF13Rvrasf": {
         "id": "K5qVextvY_YqF13Rvrasf",
         "tableId": "EJBuwz3WVrhXFpqsHuIzs",
-        "name": "maxBestPlayer",
+        "name": "maxBestPlayers",
         "comment": "",
         "dataType": "INTEGER",
         "default": "",
         "options": 0,
         "ui": {
           "keys": 0,
-          "widthName": 78,
+          "widthName": 83,
           "widthComment": 60,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1729864674991,
+          "updateAt": 1729875173976,
           "createAt": 1729864617069
         }
       },
@@ -645,8 +645,8 @@
           "columnIds": [
             "2EwV7ScaNgh1HS_D8__Vd"
           ],
-          "x": 556.756,
-          "y": 278.43899999999996,
+          "x": 540.756,
+          "y": 284.43899999999996,
           "direction": 2
         },
         "end": {
@@ -753,7 +753,7 @@
       1729864604574,
       1729864603701,
       {
-        "name": 1729864597022,
+        "name": 1729875166265,
         "dataType": 1729864600309,
         "options(notNull)": 1729864610933
       }
@@ -782,7 +782,7 @@
       1729864605756,
       -1,
       {
-        "name": 1729864609657,
+        "name": 1729875167146,
         "options(notNull)": 1729864611797,
         "dataType": 1729864624762
       }
@@ -792,7 +792,7 @@
       1729864616669,
       -1,
       {
-        "name": 1729864631126,
+        "name": 1729875170295,
         "dataType": 1729864634774
       }
     ],
@@ -801,7 +801,7 @@
       1729864616804,
       -1,
       {
-        "name": 1729864641842,
+        "name": 1729875171778,
         "dataType": 1729864677743
       }
     ],
@@ -810,7 +810,7 @@
       1729864616941,
       -1,
       {
-        "name": 1729864645499,
+        "name": 1729875172965,
         "dataType": 1729864676194
       }
     ],
@@ -819,7 +819,7 @@
       1729864617069,
       -1,
       {
-        "name": 1729864651197,
+        "name": 1729875173976,
         "dataType": 1729864674991
       }
     ],
