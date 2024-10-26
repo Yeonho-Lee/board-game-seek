@@ -69,7 +69,7 @@ async function callAPI(ids) {
         try {
             const response = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
             if (!response.ok) {
-                console.log(`API 호출 실패 (id: ${id}): ${response.status} ${response.statusText}`);
+                console.error(`API 호출 실패 (id: ${id}): ${response.status} ${response.statusText}`);
                 break;
             }
             const xmlData = await response.text(); // XML 데이터 가져오기
