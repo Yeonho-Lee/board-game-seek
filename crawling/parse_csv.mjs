@@ -24,14 +24,6 @@ async function parseCSV(filePath) {
     });
 }
 
-async function fetchBoardGameData(id) {
-    const response = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return await response.text(); // XML 데이터 반환
-}
-
 // API 호출 함수 (id 리스트를 받아서 호출)
 function parseBoardGameData(xmlData) {
     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
@@ -75,7 +67,11 @@ function saveBoardGameInfo(id, boardGameInfo) {
 async function callAPI(ids) {
     for await (const id of ids) {
         try {
-            const xmlData = await fetchBoardGameData(id); // XML 데이터 가져오기
+            const response = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const xmlData = await response.text(); // XML 데이터 가져오기
             const boardGameInfo = parseBoardGameData(xmlData); // 데이터 파싱 및 정보 추출
             saveBoardGameInfo(id, boardGameInfo); // 파일로 저장
         } catch (error) {
