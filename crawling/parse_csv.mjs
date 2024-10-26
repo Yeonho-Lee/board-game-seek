@@ -69,22 +69,20 @@ async function callAPI(ids) {
         try {
             const response = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                console.log(`API 호출 실패 (id: ${id}): ${response.status} ${response.statusText}`);
+                break;
             }
             const xmlData = await response.text(); // XML 데이터 가져오기
             const boardGameInfo = parseBoardGameData(xmlData); // 데이터 파싱 및 정보 추출
             saveBoardGameInfo(id, boardGameInfo); // 파일로 저장
         } catch (error) {
-            if (error.response) {
-                console.error(`API 호출 실패 (id: ${id}): ${error.response.status} - ${error.response.statusText}`);
-            } else if (error instanceof SyntaxError) {
+            if (error instanceof SyntaxError) {
                 console.error(`JSON 파싱 오류 (id: ${id}): ${error.message}`);
             } else if (error.code === "ENOENT") {
                 console.error(`파일 쓰기 오류 (id: ${id}): ${error.message}`);
             } else {
                 console.error(`알 수 없는 오류 (id: ${id}): ${error.message}`);
             }
-            break;
         }
     }
 }
