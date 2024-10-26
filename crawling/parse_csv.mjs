@@ -1,4 +1,3 @@
-import axios from "axios";
 import csv from "csv-parser";
 import { XMLParser } from "fast-xml-parser";
 import fs from "fs";
@@ -18,7 +17,10 @@ async function parseCSV(filePath) {
                 }
             })
             .on("end", () => resolve(ids))
-            .on("error", (error) => reject(error));
+            .on("error", (error) => {
+                console.error("Error reading CSV file:", error);
+                reject(error);
+            });
     });
 }
 
@@ -27,7 +29,12 @@ async function callAPI(ids) {
     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
     for (const id of ids) {
         try {
-            const response = await axios.get(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
+            const response = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
+
+            // HTTP 상태 코드가 정상(200)이 아닌 경우 에러를 throw
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const xmlData = response.data;
 
             // XML 데이터를 JSON으로 변환
