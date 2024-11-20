@@ -2,11 +2,12 @@ import csv from "csv-parser";
 import { XMLParser } from "fast-xml-parser";
 import fs from "fs";
 import { join } from "path";
+import BoardGame from "types/BoardGame.d.ts";
 
 // CSV 파일 파싱 함수 (id 컬럼만 리스트로 반환)
 async function parseCSV(filePath) {
     const ids = [];
-    const idLength = 10;
+    const idLength = 10000; // 상위 N개만 가져오기
     return new Promise((resolve, reject) => {
         fs.createReadStream(filePath)
             .pipe(csv())
@@ -24,6 +25,10 @@ async function parseCSV(filePath) {
     });
 }
 
+/**
+ * @param {string} xmlData - XML data from API response
+ * @returns {BoardGame} - Parsed board game data
+ */
 // API 호출 함수 (id 리스트를 받아서 호출)
 function parseBoardGameData(xmlData) {
     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
