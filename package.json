@@ -46,10 +46,7 @@
         "drizzle-kit": "^0.26.2",
         "eslint": "^9.13.0",
         "eslint-config-next": "14.2.15",
-        "eslint-config-prettier": "^9.1.0",
         "postcss": "^8.4.47",
-        "prettier": "3.3.3",
-        "prettier-plugin-tailwindcss": "^0.6.9",
         "tailwindcss": "^3.4.14",
         "typescript": "^5.6.3",
         "ulid": "^2.3.0",
@@ -59,6 +56,12 @@
         "drizzle-orm": {
             "react": "$react"
         }
+    },
+    "prettier": {
+        "plugins": [
+            "prettier-plugin-tailwindcss"
+        ],
+        "useTabs": true
     },
     "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
 }
