@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "originalId": 316554,
   "name": "Dune: Imperium",
   "rank": 6,
@@ -16,11 +15,4 @@
   "maxPlayingTime": 120,
   "weight": 3.051,
   "description": "Dune: Imperium is a game that uses deck-building to add a hidden-information angle to traditional worker placement. It finds inspiration in elements and characters from the Dune legacy, both the new film from Legendary Pictures and the seminal literary series from Frank Herbert, Brian Herbert, and Kevin J. Anderson.&#10;&#10;As a leader of one of the Great Houses of the Landsraad, raise your banner and marshal your forces and spies. War is coming, and at the center of the conflict is Arrakis &ndash; Dune, the desert planet.&#10;&#10;You start with a unique leader card, as well as a deck identical to those of your opponents.  As you acquire cards and build your deck, your choices will define your strengths and weaknesses. Cards allow you to send your Agents to certain spaces on the game board, so how your deck evolves affects your strategy. You might become more powerful militarily, able to deploy more troops than your opponents. Or you might acquire cards that give you an edge with the four political factions represented in the game: the Emperor, the Spacing Guild, the Bene Gesserit, and the Fremen.&#10;&#10;Unlike many deck-building games, you don&rsquo;t play your entire hand in one turn. Instead, you draw a hand of cards at the start of every round and alternate with other players, taking one Agent turn at a time (playing one card to send one of your Agents to the game board). When it&rsquo;s your turn and you have no more Agents to place, you&rsquo;ll take a Reveal turn, revealing the rest of your cards, which will provide Persuasion and Swords. Persuasion is used to acquire more cards, and Swords help your troops fight for the current round&rsquo;s rewards as shown on the revealed Conflict card.&#10;&#10;Defeat your rivals in combat, shrewdly navigate the political factions, and acquire precious cards. The Spice must flow to lead your House to victory!&#10;&#10;Some important links: The Official FAQ, the Unofficial FAQ, and an Automa (solo and 2p) Overview&#10;&#10;"
-=======
-  "id": 316554,
-  "name": "Dune: Imperium",
-  "yearPublished": 2020,
-  "minPlayers": 1,
-  "maxPlayers": 4
->>>>>>> 1999866f50099f123e4a21c09ff9f06c1eae8069
 }

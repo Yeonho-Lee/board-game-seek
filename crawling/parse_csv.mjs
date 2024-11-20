@@ -1,13 +1,13 @@
-import axios from "axios";
 import csv from "csv-parser";
 import { XMLParser } from "fast-xml-parser";
 import fs from "fs";
 import { join } from "path";
+import BoardGame from "types/BoardGame.d.ts";
 
 // CSV 파일 파싱 함수 (id 컬럼만 리스트로 반환)
 async function parseCSV(filePath) {
     const ids = [];
-    const idLength = 10;
+    const idLength = 10000; // 상위 N개만 가져오기
     return new Promise((resolve, reject) => {
         fs.createReadStream(filePath)
             .pipe(csv())
@@ -18,70 +18,74 @@ async function parseCSV(filePath) {
                 }
             })
             .on("end", () => resolve(ids))
-            .on("error", (error) => reject(error));
+            .on("error", (error) => {
+                console.error("Error reading CSV file:", error);
+                reject(error);
+            });
     });
 }
 
+/**
+ * @param {string} xmlData - XML data from API response
+ * @returns {BoardGame} - Parsed board game data
+ */
 // API 호출 함수 (id 리스트를 받아서 호출)
-async function callAPI(ids) {
+function parseBoardGameData(xmlData) {
     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
-    for (const id of ids) {
+    const jsonData = parser.parse(xmlData);
+    const item = jsonData.items.item;
+
+    const { bestWith, recommendedWith } = getPollSummary(item);
+    const { minPlayers: minBestPlayer, maxPlayers: maxBestPlayer } = parsePlayerRange(bestWith);
+    const { minPlayers: minRecommendedPlayer, maxPlayers: maxRecommendedPlayer } = parsePlayerRange(recommendedWith);
+    const name = Array.isArray(item.name) ? item.name.find((n) => n.type === "primary")?.value : item.name?.value;
+    const rank = Array.isArray(item.statistics.ratings.ranks.rank)
+        ? item.statistics.ratings.ranks.rank.find((n) => n.type === "subtype")?.value
+        : item.name?.value;
+
+    return {
+        originalId: Number(item.id),
+        name: name,
+        rank: Number(rank),
+        publishedYear: Number(item.yearpublished?.value),
+        rating: Number(item.statistics.ratings.average?.value),
+        minPlayer: Number(item.minplayers?.value),
+        maxPlayer: Number(item.maxplayers?.value),
+        minRecommendedPlayers: Number(minRecommendedPlayer) || null,
+        maxRecommendedPlayers: Number(maxRecommendedPlayer) || null,
+        minBestPlayers: Number(minBestPlayer) || null,
+        maxBestPlayers: Number(maxBestPlayer) || null,
+        age: Number(item.minage?.value),
+        minPlayingTime: Number(item.minplaytime?.value),
+        maxPlayingTime: Number(item.maxplaytime?.value),
+        weight: Number(item.statistics.ratings.averageweight?.value),
+        description: item.description,
+    };
+}
+
+function saveBoardGameInfo(id, boardGameInfo) {
+    const filePath = `./crawling/boardgames_info/${id}.json`;
+    fs.writeFileSync(filePath, JSON.stringify(boardGameInfo, null, 2), "utf-8");
+    console.log(`API 호출 및 데이터 저장 성공 (id: ${id})`);
+}
+
+async function callAPI(ids) {
+    for await (const id of ids) {
         try {
-            const response = await axios.get(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
-            const xmlData = response.data;
-
-            // XML 데이터를 JSON으로 변환
-            const jsonData = parser.parse(xmlData);
-
-            const item = jsonData.items.item;
-
-            const { bestWith, recommendedWith } = getPollSummary(item);
-            const { minPlayers: minBestPlayer, maxPlayers: maxBestPlayer } = parsePlayerRange(bestWith);
-            const { minPlayers: minRecommendedPlayer, maxPlayers: maxRecommendedPlayer } =
-                parsePlayerRange(recommendedWith);
-            const name = Array.isArray(item.name)
-                ? item.name.find((n) => n.type === "primary")?.value
-                : item.name?.value;
-            const rank = Array.isArray(item.statistics.ratings.ranks.rank)
-                ? item.statistics.ratings.ranks.rank.find((n) => n.type === "subtype")?.value
-                : item.name?.value;
-
-            // 필요한 데이터만 추출
-            const boardGameInfo = {
-                originalId: Number(item.id), // Convert id to a number if applicable
-                name: name,
-                rank: Number(rank), // Convert rank to a number
-                publishedYear: Number(item.yearpublished?.value), // Convert published year
-                rating: Number(item.statistics.ratings.average?.value), // Convert rating to a number
-                minPlayer: Number(item.minplayers?.value), // Convert min players to a number
-                maxPlayer: Number(item.maxplayers?.value), // Convert max players to a number
-                minRecommendedPlayers: Number(minRecommendedPlayer) || null, // Convert min recommended players
-                maxRecommendedPlayers: Number(maxRecommendedPlayer) || null, // Convert max recommended players
-                minBestPlayers: Number(minBestPlayer) || null, // Convert min best players
-                maxBestPlayers: Number(maxBestPlayer) || null, // Convert max best players
-                age: Number(item.minage?.value), // Convert age to a number
-                minPlayingTime: Number(item.minplaytime?.value), // Convert min playing time
-                maxPlayingTime: Number(item.maxplaytime?.value), // Convert max playing time
-                weight: Number(item.statistics.ratings.averageweight?.value), // Convert weight to a number
-                description: item.description,
-            };
-
-            // 필요한 데이터만 파일로 저장
-            fs.writeFileSync(`./crawling/boardgames_info/${id}.json`, JSON.stringify(boardGameInfo, null, 2), "utf-8");
-            console.log(`API 호출 및 데이터 저장 성공 (id: ${id})`);
+            const response = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
+            if (!response.ok) {
+                console.error(`API 호출 실패 (id: ${id}): ${response.status} ${response.statusText}`);
+                break;
+            }
+            const xmlData = await response.text(); // XML 데이터 가져오기
+            const boardGameInfo = parseBoardGameData(xmlData); // 데이터 파싱 및 정보 추출
+            saveBoardGameInfo(id, boardGameInfo); // 파일로 저장
         } catch (error) {
-            // 에러 구분
-            if (error.response) {
-                // API 호출에 대한 오류
-                console.error(`API 호출 실패 (id: ${id}): ${error.response.status} - ${error.response.statusText}`);
-            } else if (error instanceof SyntaxError) {
-                // JSON 변환 중 오류
+            if (error instanceof SyntaxError) {
                 console.error(`JSON 파싱 오류 (id: ${id}): ${error.message}`);
             } else if (error.code === "ENOENT") {
-                // 파일 쓰기 중 오류 (예: 디렉터리가 없을 경우)
-                console.error(`파일 쓰기 오류 (id: ${id}):  ${error.message}`);
+                console.error(`파일 쓰기 오류 (id: ${id}): ${error.message}`);
             } else {
-                // 그 외의 오류
                 console.error(`알 수 없는 오류 (id: ${id}): ${error.message}`);
             }
         }
