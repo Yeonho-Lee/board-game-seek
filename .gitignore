@@ -37,3 +37,6 @@ next-env.d.ts
 
 # drizzle
 /drizzle/.*
+
+# crawled boardgame data
+/crawling/boardgames_info/
