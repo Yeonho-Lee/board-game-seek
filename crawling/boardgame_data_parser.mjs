@@ -1,36 +1,11 @@
-import csv from "csv-parser";
 import { XMLParser } from "fast-xml-parser";
-import fs from "fs";
-import { join } from "path";
-import BoardGame from "types/BoardGame.d.ts";
-
-// CSV 파일 파싱 함수 (id 컬럼만 리스트로 반환)
-async function parseCSV(filePath) {
-    const ids = [];
-    const idLength = 10000; // 상위 N개만 가져오기
-    return new Promise((resolve, reject) => {
-        fs.createReadStream(filePath)
-            .pipe(csv())
-            .on("data", (row) => {
-                if (row.id && ids.length < idLength) {
-                    // 상위 N개만 가져오기
-                    ids.push(row.id);
-                }
-            })
-            .on("end", () => resolve(ids))
-            .on("error", (error) => {
-                console.error("Error reading CSV file:", error);
-                reject(error);
-            });
-    });
-}
 
 /**
  * @param {string} xmlData - XML data from API response
- * @returns {BoardGame} - Parsed board game data
+ * @returns {BoardGame} - Parsed board game data // types/BoardGame.d.ts
  */
 // API 호출 함수 (id 리스트를 받아서 호출)
-function parseBoardGameData(xmlData) {
+export default function parseBoardGameData(xmlData) {
     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "" });
     const jsonData = parser.parse(xmlData);
     const item = jsonData.items.item;
@@ -63,35 +38,6 @@ function parseBoardGameData(xmlData) {
     };
 }
 
-function saveBoardGameInfo(id, boardGameInfo) {
-    const filePath = `./crawling/boardgames_info/${id}.json`;
-    fs.writeFileSync(filePath, JSON.stringify(boardGameInfo, null, 2), "utf-8");
-    console.log(`API 호출 및 데이터 저장 성공 (id: ${id})`);
-}
-
-async function callAPI(ids) {
-    for await (const id of ids) {
-        try {
-            const response = await fetch(`https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`);
-            if (!response.ok) {
-                console.error(`API 호출 실패 (id: ${id}): ${response.status} ${response.statusText}`);
-                break;
-            }
-            const xmlData = await response.text(); // XML 데이터 가져오기
-            const boardGameInfo = parseBoardGameData(xmlData); // 데이터 파싱 및 정보 추출
-            saveBoardGameInfo(id, boardGameInfo); // 파일로 저장
-        } catch (error) {
-            if (error instanceof SyntaxError) {
-                console.error(`JSON 파싱 오류 (id: ${id}): ${error.message}`);
-            } else if (error.code === "ENOENT") {
-                console.error(`파일 쓰기 오류 (id: ${id}): ${error.message}`);
-            } else {
-                console.error(`알 수 없는 오류 (id: ${id}): ${error.message}`);
-            }
-        }
-    }
-}
-
 function getPollSummary(item) {
     const pollSummary = item["poll-summary"];
 
@@ -121,16 +67,3 @@ function parsePlayerRange(playerString) {
     console.log("No match found in playerString.");
     return { minPlayers: null, maxPlayers: null }; // 일치하는 숫자가 없으면 null 반환
 }
-// 메인 함수
-async function main() {
-    const csvFilePath = join(process.cwd(), "/crawling/boardgames_ranks.csv");
-
-    try {
-        const ids = await parseCSV(csvFilePath);
-        await callAPI(ids);
-    } catch (error) {
-        console.error(`오류 발생: ${error.message}`);
-    }
-}
-
-main();

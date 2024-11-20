@@ -4,9 +4,9 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": 0,
-    "scrollLeft": -15,
-    "zoomLevel": 1,
+    "scrollTop": -251.3085,
+    "scrollLeft": -359.7883,
+    "zoomLevel": 0.58,
     "show": 431,
     "database": 4,
     "databaseName": "board-game-seek",
