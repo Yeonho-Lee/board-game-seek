@@ -6,20 +6,20 @@ import fs from "fs";
  * @returns {Promise<string[]>} - A promise that resolves to an array of IDs
  */
 export async function parseCSV(filePath, idLength) {
-    const ids = [];
+	const ids = [];
 
-    return new Promise((resolve, reject) => {
-        fs.createReadStream(filePath)
-            .pipe(csv())
-            .on("data", (row) => {
-                if (row.id && ids.length < idLength) {
-                    ids.push(row.id);
-                }
-            })
-            .on("end", () => resolve(ids))
-            .on("error", (error) => {
-                console.error("Error reading CSV file:", error);
-                reject(error);
-            });
-    });
+	return new Promise((resolve, reject) => {
+		fs.createReadStream(filePath)
+			.pipe(csv())
+			.on("data", (row) => {
+				if (row.id && ids.length < idLength) {
+					ids.push(row.id);
+				}
+			})
+			.on("end", () => resolve(ids))
+			.on("error", (error) => {
+				console.error("Error reading CSV file:", error);
+				reject(error);
+			});
+	});
 }
