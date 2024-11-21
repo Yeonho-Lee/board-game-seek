@@ -1,0 +1,125 @@
+{
+  "id": "72bffc0c-70ab-4648-a90e-739f8fd4c124",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.games": {
+      "name": "games",
+      "schema": "",
+      "columns": {
+        "original_id": {
+          "name": "original_id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rank": {
+          "name": "rank",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "weight": {
+          "name": "weight",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "min_recommended_players": {
+          "name": "min_recommended_players",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_recommended_players": {
+          "name": "max_recommended_players",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "min_best_players": {
+          "name": "min_best_players",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_best_players": {
+          "name": "max_best_players",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "published_year": {
+          "name": "published_year",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rating": {
+          "name": "rating",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "min_player": {
+          "name": "min_player",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_player": {
+          "name": "max_player",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "age": {
+          "name": "age",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "min_playing_time": {
+          "name": "min_playing_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_playing_time": {
+          "name": "max_playing_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
