@@ -40,4 +40,5 @@ next-env.d.ts
 
 # crawled boardgame data
 /crawling/boardgames_info/
+/crawling/.*
 
