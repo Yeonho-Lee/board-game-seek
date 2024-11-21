@@ -28,10 +28,10 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"drizzle/.client.ts",
+		"drizzle/client.ts",
 		"drizzle/.index.ts",
 		"drizzle/.schema.ts",
-		"crawling/.upload_to_db.mts"
+		"crawling/upload_to_db.mts"
 	],
 	"exclude": ["node_modules"]
 }
