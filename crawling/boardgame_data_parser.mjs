@@ -5,7 +5,7 @@ import { XMLParser } from "fast-xml-parser";
  * @returns {BoardGame} - Parsed board game data // types/BoardGame.d.ts
  */
 // API 호출 함수 (id 리스트를 받아서 호출)
-export default function parseBoardGameData(xmlData) {
+export function parseBoardGameData(xmlData) {
 	const parser = new XMLParser({
 		ignoreAttributes: false,
 		attributeNamePrefix: "",
@@ -29,7 +29,7 @@ export default function parseBoardGameData(xmlData) {
 	return {
 		originalId: Number(item.id),
 		name: name,
-		rank: Number(rank),
+		// rank: Number(rank),
 		publishedYear: Number(item.yearpublished?.value),
 		rating: Number(item.statistics.ratings.average?.value),
 		minPlayer: Number(item.minplayers?.value),

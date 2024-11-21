@@ -1,6 +1,6 @@
 import fs from "fs";
 import fetch from "node-fetch";
-import parseBoardGameData from "./boardgame_data_parser.mjs";
+import { parseBoardGameData } from "./boardgame_data_parser.mjs";
 
 /**
  * @param {string} id - Board Game ID
