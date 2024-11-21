@@ -30,7 +30,8 @@
 		".next/types/**/*.ts",
 		"drizzle/.client.ts",
 		"drizzle/.index.ts",
-		"drizzle/.schema.ts"
+		"drizzle/.schema.ts",
+		"crawling/upload_to_db.mts"
 	],
 	"exclude": ["node_modules"]
 }

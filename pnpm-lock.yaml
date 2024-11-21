@@ -72,7 +72,7 @@ importers:
         version: 2.5.4
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.17.1)(typescript@5.6.3)))
+        version: 1.0.7(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@22.9.1)(typescript@5.6.3)))
       tsx:
         specifier: ^4.19.1
         version: 4.19.1
@@ -81,8 +81,8 @@ importers:
         version: 0.42.1(typescript@5.6.3)
     devDependencies:
       "@types/node":
-        specifier: ^20.17.1
-        version: 20.17.1
+        specifier: ^22.9.1
+        version: 22.9.1
       "@types/pg":
         specifier: ^8.11.10
         version: 8.11.10
@@ -101,21 +101,15 @@ importers:
       eslint-config-next:
         specifier: 14.2.15
         version: 14.2.15(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@9.13.0(jiti@1.21.6))
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
-      prettier:
-        specifier: 3.3.3
-        version: 3.3.3
       prettier-plugin-tailwindcss:
         specifier: ^0.6.9
         version: 0.6.9(prettier@3.3.3)
       tailwindcss:
         specifier: ^3.4.14
-        version: 3.4.14(ts-node@10.9.2(@types/node@20.17.1)(typescript@5.6.3))
+        version: 3.4.14(ts-node@10.9.2(@types/node@22.9.1)(typescript@5.6.3))
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
@@ -1723,6 +1717,12 @@ packages:
         integrity: sha512-j2VlPv1NnwPJbaCNv69FO/1z4lId0QmGvpT41YxitRtWlg96g/j8qcv2RKsLKe2F6OJgyXhupN1Xo17b2m139Q==,
       }
 
+  "@types/node@22.9.1":
+    resolution:
+      {
+        integrity: sha512-p8Yy/8sw1caA8CdRIQBG5tiLHmxtQKObCijiAa9Ez+d4+PRffM4054xbju0msf+cvhJpnFEeNjxmVT/0ipktrg==,
+      }
+
   "@types/pg@8.11.10":
     resolution:
       {
@@ -2565,12 +2565,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  eslint-config-prettier@9.1.0:
-    resolution: {integrity: sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==}
-    hasBin: true
-    peerDependencies:
-      eslint: '>=7.0.0'
 
   eslint-import-resolver-node@0.3.9:
     resolution:
@@ -3889,36 +3883,39 @@ packages:
     engines: { node: ">= 0.8.0" }
 
   prettier-plugin-tailwindcss@0.6.9:
-    resolution: {integrity: sha512-r0i3uhaZAXYP0At5xGfJH876W3HHGHDp+LCRUJrs57PBeQ6mYHMwr25KH8NPX44F2yGTvdnH7OqCshlQx183Eg==}
-    engines: {node: '>=14.21.3'}
+    resolution:
+      {
+        integrity: sha512-r0i3uhaZAXYP0At5xGfJH876W3HHGHDp+LCRUJrs57PBeQ6mYHMwr25KH8NPX44F2yGTvdnH7OqCshlQx183Eg==,
+      }
+    engines: { node: ">=14.21.3" }
     peerDependencies:
-      '@ianvs/prettier-plugin-sort-imports': '*'
-      '@prettier/plugin-pug': '*'
-      '@shopify/prettier-plugin-liquid': '*'
-      '@trivago/prettier-plugin-sort-imports': '*'
-      '@zackad/prettier-plugin-twig-melody': '*'
+      "@ianvs/prettier-plugin-sort-imports": "*"
+      "@prettier/plugin-pug": "*"
+      "@shopify/prettier-plugin-liquid": "*"
+      "@trivago/prettier-plugin-sort-imports": "*"
+      "@zackad/prettier-plugin-twig-melody": "*"
       prettier: ^3.0
-      prettier-plugin-astro: '*'
-      prettier-plugin-css-order: '*'
-      prettier-plugin-import-sort: '*'
-      prettier-plugin-jsdoc: '*'
-      prettier-plugin-marko: '*'
-      prettier-plugin-multiline-arrays: '*'
-      prettier-plugin-organize-attributes: '*'
-      prettier-plugin-organize-imports: '*'
-      prettier-plugin-sort-imports: '*'
-      prettier-plugin-style-order: '*'
-      prettier-plugin-svelte: '*'
+      prettier-plugin-astro: "*"
+      prettier-plugin-css-order: "*"
+      prettier-plugin-import-sort: "*"
+      prettier-plugin-jsdoc: "*"
+      prettier-plugin-marko: "*"
+      prettier-plugin-multiline-arrays: "*"
+      prettier-plugin-organize-attributes: "*"
+      prettier-plugin-organize-imports: "*"
+      prettier-plugin-sort-imports: "*"
+      prettier-plugin-style-order: "*"
+      prettier-plugin-svelte: "*"
     peerDependenciesMeta:
-      '@ianvs/prettier-plugin-sort-imports':
+      "@ianvs/prettier-plugin-sort-imports":
         optional: true
-      '@prettier/plugin-pug':
+      "@prettier/plugin-pug":
         optional: true
-      '@shopify/prettier-plugin-liquid':
+      "@shopify/prettier-plugin-liquid":
         optional: true
-      '@trivago/prettier-plugin-sort-imports':
+      "@trivago/prettier-plugin-sort-imports":
         optional: true
-      '@zackad/prettier-plugin-twig-melody':
+      "@zackad/prettier-plugin-twig-melody":
         optional: true
       prettier-plugin-astro:
         optional: true
@@ -3944,8 +3941,11 @@ packages:
         optional: true
 
   prettier@3.3.3:
-    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
-    engines: {node: '>=14'}
+    resolution:
+      {
+        integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==,
+      }
+    engines: { node: ">=14" }
     hasBin: true
 
   prop-types@15.8.1:
@@ -5460,6 +5460,10 @@ snapshots:
     dependencies:
       undici-types: 6.19.8
 
+  "@types/node@22.9.1":
+    dependencies:
+      undici-types: 6.19.8
+
   "@types/pg@8.11.10":
     dependencies:
       "@types/node": 20.17.1
@@ -6091,10 +6095,6 @@ snapshots:
       - eslint-import-resolver-webpack
       - eslint-plugin-import-x
       - supports-color
-
-  eslint-config-prettier@9.1.0(eslint@9.13.0(jiti@1.21.6)):
-    dependencies:
-      eslint: 9.13.0(jiti@1.21.6)
 
   eslint-import-resolver-node@0.3.9:
     dependencies:
@@ -6858,13 +6858,13 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.47
 
-  postcss-load-config@4.0.2(postcss@8.4.47)(ts-node@10.9.2(@types/node@20.17.1)(typescript@5.6.3)):
+  postcss-load-config@4.0.2(postcss@8.4.47)(ts-node@10.9.2(@types/node@22.9.1)(typescript@5.6.3)):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.6.0
     optionalDependencies:
       postcss: 8.4.47
-      ts-node: 10.9.2(@types/node@20.17.1)(typescript@5.6.3)
+      ts-node: 10.9.2(@types/node@22.9.1)(typescript@5.6.3)
 
   postcss-nested@6.2.0(postcss@8.4.47):
     dependencies:
@@ -7205,11 +7205,11 @@ snapshots:
 
   tailwind-merge@2.5.4: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.17.1)(typescript@5.6.3))):
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.14(ts-node@10.9.2(@types/node@22.9.1)(typescript@5.6.3))):
     dependencies:
-      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@20.17.1)(typescript@5.6.3))
+      tailwindcss: 3.4.14(ts-node@10.9.2(@types/node@22.9.1)(typescript@5.6.3))
 
-  tailwindcss@3.4.14(ts-node@10.9.2(@types/node@20.17.1)(typescript@5.6.3)):
+  tailwindcss@3.4.14(ts-node@10.9.2(@types/node@22.9.1)(typescript@5.6.3)):
     dependencies:
       "@alloc/quick-lru": 5.2.0
       arg: 5.0.2
@@ -7228,7 +7228,7 @@ snapshots:
       postcss: 8.4.47
       postcss-import: 15.1.0(postcss@8.4.47)
       postcss-js: 4.0.1(postcss@8.4.47)
-      postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.2(@types/node@20.17.1)(typescript@5.6.3))
+      postcss-load-config: 4.0.2(postcss@8.4.47)(ts-node@10.9.2(@types/node@22.9.1)(typescript@5.6.3))
       postcss-nested: 6.2.0(postcss@8.4.47)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.8
@@ -7258,14 +7258,14 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-node@10.9.2(@types/node@20.17.1)(typescript@5.6.3):
+  ts-node@10.9.2(@types/node@22.9.1)(typescript@5.6.3):
     dependencies:
       "@cspotcode/source-map-support": 0.8.1
       "@tsconfig/node10": 1.0.11
       "@tsconfig/node12": 1.0.11
       "@tsconfig/node14": 1.0.3
       "@tsconfig/node16": 1.0.4
-      "@types/node": 20.17.1
+      "@types/node": 22.9.1
       acorn: 8.13.0
       acorn-walk: 8.3.4
       arg: 4.1.3
